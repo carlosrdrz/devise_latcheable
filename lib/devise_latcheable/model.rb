@@ -1,6 +1,6 @@
 module Devise
   module Models
-    module LatchAuthenticatable
+    module Latcheable
       extend ActiveSupport::Concern
 
       included do

@@ -2,9 +2,10 @@ require 'devise/strategies/authenticatable'
 
 module Devise
   module Strategies
-    class LatchAuthenticatable < Authenticatable
+    class Latcheable < Authenticatable
       def authenticate!
         resource = mapping.to.new
+        binding.pry
 
         if resource && validate(resource) { resource.unlocked? }
           success! resource
@@ -16,4 +17,4 @@ module Devise
   end
 end
 
-Warden::Strategies.add :latch_authenticatable, Devise::Strategies::LatchAuthenticatable
+Warden::Strategies.add :latcheable, Devise::Strategies::Latcheable
