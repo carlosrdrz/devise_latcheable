@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency('devise', '>= 3.0')
+  s.add_dependency('latchsdk', '>= 1.1')
 
   # s.add_development_dependency('rake', '>= 0.9')
   # s.add_development_dependency('rdoc', '>= 3')

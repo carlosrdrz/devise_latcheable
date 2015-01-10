@@ -1,3 +1,4 @@
+require 'latchsdk'
 require 'devise'
 require 'devise_latcheable/adapter'
 require 'devise_latcheable/model'
