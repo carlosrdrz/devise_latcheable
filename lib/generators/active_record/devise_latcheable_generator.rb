@@ -8,7 +8,7 @@ module ActiveRecord
       class_option :orm
 
       def copy_devise_latcheable_migration
-        migration_template "migration.rb", "db/migrate/devise_latcheable_#{table_name}.rb"
+        migration_template "migration.rb", "db/migrate/add_devise_latcheable_to_#{table_name}.rb"
       end
 
       def copy_config

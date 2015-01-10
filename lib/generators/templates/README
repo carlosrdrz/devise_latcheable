@@ -1,13 +1,15 @@
+
 ======================================
-Sweet! Just two more steps to go:
+Only two more steps to go:
 
 1. Run rake db:migrate
 
 2. Modify config/latch.yml
-Write there your app id and your app secret codes
+Paste your app id and your app secret code there
 
 Latch is enabled by default in all instances.
 
-If you want to use it optionaly, set 'always_enabled' to false on your latch.yml file
-and set latch_enabled to true in the instance that should be checked against Latch
+If you want to use it only in certain instances, set 'always_enabled' to false
+on your latch.yml file and set latch_enabled to true in the instance
+that should be checked against Latch
 ======================================
