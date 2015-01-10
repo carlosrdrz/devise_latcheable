@@ -1,7 +1,7 @@
 module Devise
   module Latch
     @yaml_config = YAML.load(File.read("config/latch.yml"))[Rails.env]
-    @latch_instance = ::Latch::Latch.new @yaml_config[:app_id], @yaml_config[:app_secret]
+    @latch_instance = ::Latch::Latch.new @yaml_config['app_id'], @yaml_config['app_secret']
 
     # => Pairs an user with the server.
     #    @returns Account ID on success and nil on failure
@@ -12,9 +12,9 @@ module Devise
     end
 
     # => Checks if the app lock is open
-    def self.unlocked?(accountId)
-      res = @latch_instance.status accountId
-      return true if res.error.nil?
+    def self.unlocked?(account_id)
+      res = @latch_instance.status account_id
+      return false unless res.error.nil?
       
       key = res.data['operations'].keys.first
       status = res.data['operations'][key]['status']

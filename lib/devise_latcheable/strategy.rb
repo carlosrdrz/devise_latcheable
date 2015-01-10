@@ -4,13 +4,12 @@ module Devise
   module Strategies
     class Latcheable < Authenticatable
       def authenticate!
-        resource = mapping.to.new
-        binding.pry
+        resource = mapping.to.find_by(authentication_hash)
 
-        if resource && validate(resource) { resource.unlocked? }
+        if resource && validate(resource) { resource.latch_unlocked? }
           success! resource
         else
-          fail :invalid
+          fail 'Latch is locked. Remove the lock from you app and try to log in again.'
         end
       end
     end

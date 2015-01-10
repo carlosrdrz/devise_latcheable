@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name     = 'devise_latcheable'
   s.version  = '0.0.1'
   s.platform = Gem::Platform::RUBY
-  s.summary  = 'Devise extension that checks Latch status to log users in'
+  s.summary  = 'Devise extension that checks Latch status to log users in the app'
   s.email = 'crresse@gmail.com'
   # s.homepage = ''
   s.description = s.summary
