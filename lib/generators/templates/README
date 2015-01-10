@@ -1,7 +1,9 @@
 ======================================
-You're up to go!
+Sweet! Just two more steps to go:
 
-Now, go ahead and modify config/latch.yml
+1. Run rake db:migrate
+
+2. Modify config/latch.yml
 Write there your app id and your app secret codes
 
 Latch is enabled by default in all instances.
