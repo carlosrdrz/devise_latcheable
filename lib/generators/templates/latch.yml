@@ -1,4 +1,3 @@
-development:
-  app_id: 'YOUR_APP_ID'
-  app_secret: 'YOUR_APP_SECRET'
-  always_enabled: true
+app_id: 'YOUR_APP_ID'
+app_secret: 'YOUR_APP_SECRET'
+always_enabled: true

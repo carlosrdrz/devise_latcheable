@@ -1,6 +1,6 @@
 module Devise
   module Latch
-    @yaml_config = YAML.load(File.read("config/latch.yml"))[Rails.env]
+    @yaml_config = YAML.load(File.read("config/latch.yml"))
     @latch_instance = ::Latch::Latch.new @yaml_config['app_id'], @yaml_config['app_secret']
 
     # => Pairs an user with the server.

@@ -27,7 +27,7 @@ module Devise
 
       def latch_unpair!
         return true unless latch_enabled?
-        return false if latch_account_id.nil?
+        return true if latch_account_id.nil?
         Devise::Latch.unpair latch_account_id
       end
 
@@ -43,7 +43,7 @@ module Devise
       end
 
       def latch_enable
-        latch_enabled = true if Devise::Latch.config['always_enabled'] == true
+        self.latch_enabled = true if Devise::Latch.config['always_enabled'] == true
       end
     end
   end
