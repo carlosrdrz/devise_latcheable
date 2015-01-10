@@ -20,5 +20,15 @@ module Devise
       status = res.data['operations'][key]['status']
       status == 'on'
     end
+
+    # => Removes the pairing from lath
+    def self.unpair(account_id)
+      res = @latch_instance.unpair account_id
+      res.error.nil? ? true : false
+    end
+
+    def self.config
+      @yaml_config
+    end
   end
 end

@@ -9,7 +9,7 @@ module Devise
         if resource && validate(resource) { resource.latch_unlocked? }
           success! resource
         else
-          fail 'Latch is locked. Remove the lock from you app and try to log in again.'
+          fail 'Latch is locked. Unlock and try again.'
         end
       end
     end

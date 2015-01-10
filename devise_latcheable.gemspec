@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
+require "devise_latcheable/version"
 
 Gem::Specification.new do |s|
   s.name     = 'devise_latcheable'
-  s.version  = '0.0.1'
+  s.version  = DeviseLatcheable::VERSION.dup
   s.platform = Gem::Platform::RUBY
   s.summary  = 'Devise extension that checks Latch status to log users in the app'
   s.email = 'crresse@gmail.com'

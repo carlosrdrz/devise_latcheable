@@ -4,6 +4,8 @@ require 'devise_latcheable/model'
 require 'devise_latcheable/strategy'
 require 'devise_latcheable/engine'
 
+require 'generators/devise_latcheable_generator'
+
 module DeviseLatcheable
 end
 

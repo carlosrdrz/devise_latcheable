@@ -9,23 +9,41 @@ module Devise
         # it on the database
         attr_accessor :pair_code
 
-        before_create :latch_pair
+        after_initialize :latch_enable
+
+        before_create :latch_pair!
+        before_destroy :latch_unpair!
+      end
+
+      def latch_enabled?
+        latch_enabled
       end
 
       def latch_unlocked?
+        return true unless latch_enabled?
         return false if latch_account_id.nil?
         Devise::Latch.unlocked? latch_account_id
       end
 
-      private
+      def latch_unpair!
+        return true unless latch_enabled?
+        return false if latch_account_id.nil?
+        Devise::Latch.unpair latch_account_id
+      end
 
-      def latch_pair        
+      def latch_pair!
+        return true unless latch_enabled?
+
         self.latch_account_id = Devise::Latch.pair pair_code
 
         if latch_account_id.nil?
           errors.add(:base, 'Invalid latch pair code')
           return false
         end
+      end
+
+      def latch_enable
+        latch_enabled = true if Devise::Latch.config['always_enabled'] == true
       end
     end
   end
