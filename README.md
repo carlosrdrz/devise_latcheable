@@ -1,5 +1,5 @@
 # devise_latcheable
-This gem adds an extra layer of security using a Latch account to any Rails account using the devise gem.
+This gem adds an extra layer of security using a Latch account to any Rails app using the devise gem.
 
 You can find more info about Latch at https://latch.elevenpaths.com
 
