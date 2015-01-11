@@ -1,11 +1,13 @@
 # devise\_latcheable
-This gem adds an extra security layer using a Latch account to any Rails app using the devise gem.
+This gem adds an extra security layer using a Latch account to any Rails app 
+using the devise gem.
 
 You can find more info about Latch at https://latch.elevenpaths.com
 
 ## How to install and configure it
 
-1. Install and configure devise gem. You can follow the guide at https://github.com/plataformatec/devise
+1. Install and configure devise gem. You can follow the guide at 
+https://github.com/plataformatec/devise
 
 2. Add the gem to your Gemfile
 ```ruby
@@ -40,8 +42,8 @@ The good thing about devise\_latcheable is that you can just forget about Latch,
 because the gem will take care of it for you. If you know how to use devise, you
 already know how to use devise\_latcheable!
 
-For more advanced users, the information below will be useful in case of modifying
-or expanding the functionality of devise\_latcheable.
+For more advanced users, the information below will be useful in case of
+modifying or expanding the functionality of devise\_latcheable.
 
 ### Custom register forms and pair code
 devise\_latcheable comes with a register form for your users. To use it, you 
@@ -100,7 +102,7 @@ user.destroy # Latch is unpaired at this point, and the user will receive a noti
 When a user pairs with Latch, devise\_latcheable needs to hold a reference to
 the user's latch id to check his latch status. You can get a user's latch id
 calling latch\_account\_id on it.
-```
+```ruby
 user = User.find_by name: 'Test'
 user.latch_account_id
 ```
