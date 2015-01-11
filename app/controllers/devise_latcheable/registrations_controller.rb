@@ -4,6 +4,6 @@ class DeviseLatcheable::RegistrationsController < Devise::RegistrationsControlle
   protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :pair_code) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :latch_pair_code) }
     end
 end

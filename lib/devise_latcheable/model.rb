@@ -7,7 +7,7 @@ module Devise
         # We only use pair code to pair the user with latch. Once it is
         # paired, we dont need the pair code anymore, so we wont save
         # it on the database
-        attr_accessor :pair_code
+        attr_accessor :latch_pair_code
 
         after_initialize :latch_enable
 
@@ -34,7 +34,7 @@ module Devise
       def latch_pair!
         return true unless latch_enabled?
 
-        self.latch_account_id = Devise::Latch.pair pair_code
+        self.latch_account_id = Devise::Latch.pair latch_pair_code
 
         if latch_account_id.nil?
           errors.add(:base, 'Invalid latch pair code')

@@ -29,14 +29,14 @@ devise_for :users, controllers: { registrations: 'devise_latcheable/registration
 ## Using devise_latcheable
 
 ### Pair code
-An attr_accessor called 'pair_code' is registered on your application users model. This attribute isn't saved on your database but is needed when a user is being created. devise_latcheable will check the 'pair_code' against Latch. If the user pair code is valid, the user will be logged in and the account_id will be saved with the user on the database.
+An attr_accessor called 'latch_pair_code' is registered on your application users model. This attribute isn't saved on your database but is needed when a user is being created. devise_latcheable will check this code against Latch. If the user pair code is valid, the user will be registered and logged in.
 ```ruby
 # Example saving an user and pairing it
 user = User.new
 user.email = 'crresse@gmail.com'
 user.password = '123123123'
 user.password_confirmation = '123123123'
-user.pair_code = 'fw2kW5L'
+user.latch_pair_code = 'fw2kW5L'
 user.save # true if no errors
 ```
 
