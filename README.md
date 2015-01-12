@@ -107,6 +107,27 @@ user = User.find_by name: 'Test'
 user.latch_account_id
 ```
 
+### Methods on the users model
+
+#### latch_pair!
+Pairs an user with the server.
+If an error occurs, it copies the error at errors base
+so you can access it with model_instance.errors
+On success, it sets latch_account_id to the value that
+latch server sent on its response
+@returns true on success, false otherwise
+
+### latch_unpair!
+Removes the pairing from latch
+If an error occurs, it copies the error at errors base
+so you can access it with model_instance.errors
+@returns true on success, false otherwise
+
+### latch_unlocked?
+Checks if the app lock is open
+@returns true if the latch is unlocked
+@returns false if the latch is locked or if there was an error
+
 ## Demo
 There is a app already configured with devise and devise\_latcheable at
 [this repo](https://github.com/CarlosRdrz/latch_app) for demo and
