@@ -7,7 +7,7 @@ module Devise
         resource = mapping.to.find_by(authentication_hash)
 
         if resource && validate(resource) { resource.latch_unlocked? }
-          success! resource
+          pass
         else
           fail 'Latch is locked. Unlock and try again.'
         end
