@@ -1,11 +1,18 @@
 require 'latchsdk'
 require 'devise'
-require 'devise_latcheable/adapter'
 require 'devise_latcheable/model'
 require 'devise_latcheable/strategy'
 require 'devise_latcheable/engine'
 
 module DeviseLatcheable
+  # The config file
+  mattr_accessor :config
+  self.config = YAML.load(File.read('config/latch.yml'))
+
+  # We instantiate only one api client per app
+  mattr_accessor :api
+  self.api = ::Latch.new ::DeviseLatcheable.config['app_id'],
+                         ::DeviseLatcheable.config['app_secret']
 end
 
 Devise.add_module :latcheable,

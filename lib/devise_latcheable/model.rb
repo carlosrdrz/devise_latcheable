@@ -19,31 +19,63 @@ module Devise
         latch_enabled
       end
 
+      # => Checks if the app lock is open
+      #    @returns true if the latch is unlocked
+      #    @returns false if the latch is locked or if there was an error
       def latch_unlocked?
         return true unless latch_enabled?
         return false if latch_account_id.nil?
-        Devise::Latch.unlocked? latch_account_id
+        api_response = ::DeviseLatcheable.api.status latch_account_id
+
+        if api_response.error.nil?
+          key = api_response.data['operations'].keys.first
+          status = api_response.data['operations'][key]['status']
+          return (status == 'on')
+        else
+          return false
+        end
       end
 
+      # => Removes the pairing from latch
+      #    If an error occurs, it copies the error at errors base
+      #    so you can access it with model_instance.errors
+      #    @returns true on success, false otherwise
       def latch_unpair!
         return true unless latch_enabled?
         return true if latch_account_id.nil?
-        Devise::Latch.unpair latch_account_id
+        api_response = ::DeviseLatcheable.api.unpair latch_account_id
+
+        if api_response.error.nil?
+          return true
+        else
+          errors.add(:base, "Latch error: #{api_response.error.message}")
+          return false
+        end
       end
 
+      # => Pairs an user with the server.
+      #    If an error occurs, it copies the error at errors base
+      #    so you can access it with model_instance.errors
+      #    On success, it sets latch_account_id to the value that
+      #    latch server sent on its response
+      #    @returns true on success, false otherwise
       def latch_pair!
         return true unless latch_enabled?
+        api_response = ::DeviseLatcheable.api.pair latch_pair_code
 
-        self.latch_account_id = Devise::Latch.pair latch_pair_code
-
-        if latch_account_id.nil?
-          errors.add(:base, 'Invalid latch pair code')
+        if api_response.error.nil?
+          self.latch_account_id = api_response.data['accountId']
+          return true
+        else
+          errors.add(:base, "Latch error: #{api_response.error.message}")
           return false
         end
       end
 
       def latch_enable
-        self.latch_enabled = true if Devise::Latch.config['always_enabled'] == true
+        if ::DeviseLatcheable.config['always_enabled'] == true
+          self.latch_enabled = true
+        end
       end
     end
   end
