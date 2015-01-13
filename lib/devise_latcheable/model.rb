@@ -25,6 +25,7 @@ module Devise
       def latch_unlocked?
         return true unless latch_enabled?
         return false if latch_account_id.nil?
+        ::DeviseLatcheable.initialize if ::DeviseLatcheable.api.nil?
         api_response = ::DeviseLatcheable.api.status latch_account_id
 
         if api_response.error.nil?
@@ -43,6 +44,7 @@ module Devise
       def latch_unpair!
         return true unless latch_enabled?
         return true if latch_account_id.nil?
+        ::DeviseLatcheable.initialize if ::DeviseLatcheable.api.nil?
         api_response = ::DeviseLatcheable.api.unpair latch_account_id
 
         if api_response.error.nil?
@@ -61,8 +63,9 @@ module Devise
       #    @returns true on success, false otherwise
       def latch_pair!
         return true unless latch_enabled?
+        ::DeviseLatcheable.initialize if ::DeviseLatcheable.api.nil?
         api_response = ::DeviseLatcheable.api.pair latch_pair_code
-
+        
         if api_response.error.nil?
           self.latch_account_id = api_response.data['accountId']
           return true
@@ -72,7 +75,8 @@ module Devise
         end
       end
 
-      def latch_enable
+      def latch_enable 
+        ::DeviseLatcheable.initialize if ::DeviseLatcheable.config.nil?
         if ::DeviseLatcheable.config['always_enabled'] == true
           self.latch_enabled = true
         end

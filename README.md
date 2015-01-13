@@ -110,25 +110,29 @@ user.latch_account_id
 ### Methods on the users model
 
 #### latch_pair!
-Pairs an user with the server.
-If an error occurs, it copies the error at errors base
-so you can access it with model_instance.errors
-On success, it sets latch_account_id to the value that
-latch server sent on its response
-@returns true on success, false otherwise
+This method pairs an user with the server. If an error occurs, it copies the
+error at errors base so you can access it with model_instance.errors
+
+On success, it sets latch_account_id to the value that the latch server sent
+on its response
 
 ### latch_unpair!
-Removes the pairing from latch
-If an error occurs, it copies the error at errors base
-so you can access it with model_instance.errors
-@returns true on success, false otherwise
+Removes the pairing from latch. If an error occurs, it copies the error at
+errors base so you can access it with model_instance.errors.
 
 ### latch_unlocked?
-Checks if the app lock is open
-@returns true if the latch is unlocked
-@returns false if the latch is locked or if there was an error
+Checks if the app lock is open. Returns true if the latch is unlocked and
+false if the latch is locked or if there was an error
 
 ## Demo
 There is a app already configured with devise and devise\_latcheable at
-[this repo](https://github.com/CarlosRdrz/latch_app) for demo and
+[this repo](https://github.com/carlosrdrz/latch_app) for demo and
 development purposes.
+
+You can see that app running at http://latcheable.carlosrdrz.es
+
+## How it works
+
+Devise builds a chain of strategies that he must check when logging an user in.
+You can define your chain of strategies in your model. We use database_authenticaton
+with latcheable, so both strategies are checked when logging an user in.
