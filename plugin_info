@@ -1,5 +1,7 @@
 This plugin is a ruby gem that adds a module for the devise gem. It implements
-latch authentication usable by any rails app using devise.
+latch authentication usable by any rails app using devise. That means that
+you should already know something about developing with Rails and Devise in
+order to use this gem
 
 Rails is one of the most used frameworks to build web apps. A high number of
 startups use Rails to build their products, and almost every one of them uses
@@ -22,16 +24,18 @@ good thing is that if they know how to use Devise they already know how to use
 Devise Latcheable!
 
 There is an app already configured with Devise and Devise Latcheable at
-https://github.com/CarlosRdrz/latch_app. To run it, you just need to modify
+https://github.com/carlosrdrz/latch_app. To run it, you just need to modify
 the file config/latch.yml and write there your app id and secret.
 This app is only an example, but shows how the module works.
 
+There is an online version of latch_app running at http://latcheable.carlosrdrz.es
+
 In the future, it will be great if Devise Latcheable is merged with Devise. The
-authors of Devise did this before with other modules, and it eliminates steps
+authors of Devise did this before with other modules and it eliminates steps
 for installation and configuration of Devise Latcheable, therefore simplyfing
 the process of implementing Latch in any app.
 
 I think that Devise Latcheable should win the contest because it allows a lot
 of apps to implement Latch in a easy way, and this can encourage the usage of
-Latch in the rails community, which is one of the most active developers 
-communities of the world.
+Latch in the rails community, which is one of the most active developer
+communities right now.
